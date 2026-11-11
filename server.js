@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express=require('express'),helmet=require('helmet'),session=require('express-session'),rateLimit=require('express-rate-limit'),pg=require('pg'),PgSession=require('connect-pg-simple')(session),bcrypt=require('bcryptjs'),{z}=require('zod'),path=require('path');
 if(!process.env.DATABASE_URL||!process.env.SESSION_SECRET||process.env.SESSION_SECRET.length<32)throw Error('Set DATABASE_URL and SESSION_SECRET (at least 32 chars)');
-const pool=new pg.Pool({connectionString:process.env.DATABASE_URL,ssl:process.env.DATABASE_SSL==='true'?{rejectUnauthorized:true}:undefined});
+const pool=new pg.Pool({connectionString:process.env.DATABASE_URL,ssl:process.env.DATABASE_SSL==='true'?{rejectUnauthorized:true}:undefined,options:'-c search_path=matoranhembe_school,pg_catalog'});
 const app=express();app.disable('x-powered-by');if(process.env.NODE_ENV==='production')app.set('trust proxy',1);
 app.use(helmet({contentSecurityPolicy:false}));app.use(express.json({limit:'20kb'}));
 app.use(session({store:new PgSession({pool,createTableIfMissing:true}),name:'mhs.sid',secret:process.env.SESSION_SECRET,resave:false,saveUninitialized:false,cookie:{httpOnly:true,sameSite:'lax',secure:process.env.NODE_ENV==='production',maxAge:1000*60*60*8}}));
