@@ -12,3 +12,6 @@ CREATE INDEX IF NOT EXISTS idx_messages_conversation ON messages(conversation_id
 CREATE INDEX IF NOT EXISTS idx_enrollments_status ON enrollments(status,created_at);
 ALTER TABLE staff ADD COLUMN IF NOT EXISTS image_url TEXT;
 ALTER TABLE milestones ADD COLUMN IF NOT EXISTS image_url TEXT;
+
+CREATE TABLE IF NOT EXISTS school_settings (id INTEGER PRIMARY KEY DEFAULT 1 CHECK(id=1), motto TEXT NOT NULL DEFAULT '', vision TEXT NOT NULL DEFAULT '', mission TEXT NOT NULL DEFAULT '', core_values TEXT NOT NULL DEFAULT '', school_history TEXT NOT NULL DEFAULT '', homepage_intro TEXT NOT NULL DEFAULT '', updated_at TIMESTAMPTZ NOT NULL DEFAULT now());
+INSERT INTO school_settings(id) VALUES(1) ON CONFLICT(id) DO NOTHING;
