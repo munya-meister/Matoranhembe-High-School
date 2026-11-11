@@ -10,3 +10,5 @@ CREATE TABLE IF NOT EXISTS payments (id BIGSERIAL PRIMARY KEY, enrollment_id BIG
 CREATE TABLE IF NOT EXISTS audit_logs (id BIGSERIAL PRIMARY KEY, actor_user_id BIGINT REFERENCES users(id), action TEXT NOT NULL, resource_type TEXT NOT NULL, resource_id TEXT, created_at TIMESTAMPTZ NOT NULL DEFAULT now());
 CREATE INDEX IF NOT EXISTS idx_messages_conversation ON messages(conversation_id,id);
 CREATE INDEX IF NOT EXISTS idx_enrollments_status ON enrollments(status,created_at);
+ALTER TABLE staff ADD COLUMN IF NOT EXISTS image_url TEXT;
+ALTER TABLE milestones ADD COLUMN IF NOT EXISTS image_url TEXT;
