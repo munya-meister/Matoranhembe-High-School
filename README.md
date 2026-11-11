@@ -9,7 +9,7 @@ School website with a PostgreSQL-backed enrollment API and a protected staff/adm
 4. Run `npm run db:init` to create tables.
 5. Create the initial admin using `npm run admin:create -- admin@school.example "School Administrator" "choose-a-unique-strong-password"` (replace example values).
 6. Run `npm start`. Open http://localhost:3000 for the public site and http://localhost:3000/admin for administration.
-7. Add school-approved images to `public/images/`: `home.jpg` for the homepage hero and `about.jpg` for the About section. Commit and push the files to GitHub; Render will deploy them. See `public/images/README.md` for more image names and guidance.
+7. Add school-approved images to `public/images/`: `home.png` for the homepage hero and `about.png` for the About section. Commit and push the files to GitHub; Render will deploy them. See `public/images/README.md` for more image names and guidance.
 
 ## How to use
 - **Parents:** Visit Admissions, enter guardian and student details, then submit. Save the returned application reference. This requires a working database/server.
